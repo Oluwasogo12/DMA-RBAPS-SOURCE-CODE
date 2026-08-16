@@ -1,0 +1,36 @@
+# Database files with sensitive information
+includes/db.php
+includes/db_local.php
+
+# Local development files
+database_analysis.php
+
+# Backup files
+subjects.php.bak
+
+# Documentation files (keep these for context)
+# sql_analysis_report.md
+# empty_subjects_decision.md
+# content_import_strategy.md
+# database_fixes_implementation_summary.md
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+debug.php
+fix_dark_mode.ps1
+
+# SQL backup (large file - consider using LFS)
+project1 (5).sql

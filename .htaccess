@@ -1,0 +1,27 @@
+Options -Indexes
+
+# Block direct access to the includes folder
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^includes/ - [F,L]
+  RewriteRule ^api/.*\.php$ - [L]
+</IfModule>
+
+# Fallback: deny includes via FilesMatch (for servers without mod_rewrite)
+<FilesMatch "^(db|auth|header|footer)\.php$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "same-origin"
+</IfModule>
+
+# Prevent session cookies being accessible via JS (backup for PHP ini)
+<IfModule mod_headers.c>
+  Header edit Set-Cookie ^(.*)$ "$1; HttpOnly; SameSite=Lax"
+</IfModule>
